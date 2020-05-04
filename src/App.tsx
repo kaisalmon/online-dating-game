@@ -1,24 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import PhoneWrapper from "./components/phone-wrapper";
+import MatchThreadComp from "./components/match-thread";
+import MatchThread from "./game/match-thread";
+
+const AlexThread:MatchThread = {
+  match: {
+    name: "Alex",
+    traits: ["COCKY", "HARDWORKING", "CARING"]
+  },
+  messages: [
+    {text: "Hi!", fromPlayer:false},
+    {text: "Howdy friend!", fromPlayer:true}
+  ]
+}
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <PhoneWrapper>
+        <MatchThreadComp matchThread={AlexThread}/>
+      </PhoneWrapper>
     </div>
   );
 }
