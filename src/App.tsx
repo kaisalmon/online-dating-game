@@ -2,26 +2,37 @@ import React from 'react';
 import PhoneWrapper from "./components/phone-wrapper";
 import MatchThreadComp from "./components/match-thread";
 import MatchThread from "./game/match-thread";
+import GameState from "./game/game-state";
 
-const AlexThread:MatchThread = {
-  match: {
-    name: "Alex",
-    traits: ["COCKY", "HARDWORKING", "CARING"]
-  },
-  messages: [
-    {text: "Hi!", fromPlayer:false},
-    {text: "Howdy friend!", fromPlayer:true}
-  ]
-}
+const TICK_LENGTH= 1000;
 
-function App() {
-  return (
-    <div className="App">
-      <PhoneWrapper>
-        <MatchThreadComp matchThread={AlexThread}/>
-      </PhoneWrapper>
-    </div>
-  );
+const Alex = {name: "Alex", traits:[] };
+
+class App extends React.Component<{}, GameState>{
+    constructor(props:{}) {
+        super(props);
+        this.state = {
+            matchThread: new MatchThread(Alex)
+        }
+    }
+    componentDidMount() {
+        setInterval(()=>{
+            const {matchThread} = this.state;
+            matchThread.tick();
+            this.setState({matchThread})
+        }, TICK_LENGTH)
+    }
+    render()
+    {
+        const {matchThread} = this.state;
+        return (
+            <div className="App">
+                <PhoneWrapper>
+                    <MatchThreadComp matchThread={matchThread}/>
+                </PhoneWrapper>
+            </div>
+        );
+    }
 }
 
 export default App;
