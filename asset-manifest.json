@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/online-dating-game/static/css/main.3c1bc35a.chunk.css",
+    "main.js": "/online-dating-game/static/js/main.18bee941.chunk.js",
+    "main.js.map": "/online-dating-game/static/js/main.18bee941.chunk.js.map",
+    "runtime-main.js": "/online-dating-game/static/js/runtime-main.c41b401c.js",
+    "runtime-main.js.map": "/online-dating-game/static/js/runtime-main.c41b401c.js.map",
+    "static/js/2.2df21cdb.chunk.js": "/online-dating-game/static/js/2.2df21cdb.chunk.js",
+    "static/js/2.2df21cdb.chunk.js.map": "/online-dating-game/static/js/2.2df21cdb.chunk.js.map",
+    "index.html": "/online-dating-game/index.html",
+    "precache-manifest.b53395ffb2fcd6c7c36915e7da86bab0.js": "/online-dating-game/precache-manifest.b53395ffb2fcd6c7c36915e7da86bab0.js",
+    "service-worker.js": "/online-dating-game/service-worker.js",
+    "static/css/main.3c1bc35a.chunk.css.map": "/online-dating-game/static/css/main.3c1bc35a.chunk.css.map",
+    "static/js/2.2df21cdb.chunk.js.LICENSE.txt": "/online-dating-game/static/js/2.2df21cdb.chunk.js.LICENSE.txt",
+    "static/media/phone-wrapper.png": "/online-dating-game/static/media/phone-wrapper.6aa6c63b.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c41b401c.js",
+    "static/js/2.2df21cdb.chunk.js",
+    "static/css/main.3c1bc35a.chunk.css",
+    "static/js/main.18bee941.chunk.js"
+  ]
+}
