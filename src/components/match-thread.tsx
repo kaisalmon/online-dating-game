@@ -12,8 +12,17 @@ const fromPlayerColor = "lightgray";
 
 const MESSAGE_THREAD_STYLES:CSS.Properties ={
     boxSizing: "border-box",
-    background: "white",
+    background: "red",
     height: "100%",
+    display: "flex",
+    flexDirection: "column",
+}
+
+const MESSAGE_AREA_STYLE:CSS.Properties = {
+    padding:"2em",
+    background:"white",
+    flexGrow: 1,
+    overflow: "auto",
 }
 const FROM_PLAYER_CHAT_BUBBLE_STYLE:CSS.Properties = {
     backgroundColor: matchColor,
@@ -72,7 +81,7 @@ export default function ({matchThread,onChange}:{matchThread:MatchThread, onChan
     console.log(choices.length)
     return <div style={MESSAGE_THREAD_STYLES}>
         <Header>{match.name}</Header>
-        <div style={{padding:"2em"}}>
+        <div style={MESSAGE_AREA_STYLE}>
             <ReactCSSTransitionGroup
               transitionName="item"
               transitionEnterTimeout={2000}>

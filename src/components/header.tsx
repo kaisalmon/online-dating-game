@@ -8,6 +8,7 @@ const HEADER_STYLE : CSS.Properties = {
     fontWeight: "bold",
     boxShadow: "0 2px 2px rgba(0,0,0,0.3)",
     fontSize: "115%",
+    zIndex: 1,
 }
 export default function ({children}:{children:React.ReactNodeArray|React.ReactNode}){
     return <div style={HEADER_STYLE}>

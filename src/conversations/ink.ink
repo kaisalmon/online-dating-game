@@ -1,31 +1,43 @@
-Hi!
-    * what are you up to?
-        -> work_desc_intro
-    * what are you doing?
-        -> work_desc_intro
-    
-==== work_desc_intro ====
-Not much, just finishing some work off
-        
-    *  Ugh, Sounds Rough[...], I hope you're day wasn't too long
-        WTF, I like working
-        Anyway...  
-            -> work_desc
-    * Ooh, fun!
-        Yeah, it is! 
-            -> work_desc
+CONST HALLWAY = 1
+CONST OFFICE = 2
 
-==== work_desc ====
-I work as a {~Teacher|Programmer -> nerd_conversation|Police Officer|Lighthouse Opperator}
-    *Oh, yeah? 
-        -> END
-    *Wow!
-        -> END
+VAR player_location = HALLWAY
+VAR generals_location = HALLWAY 
+VAR doctors_location = OFFICE
 
-==== nerd_conversation ====
-* Wow, what kind of programming?
-  You, know, {~Web|Games|Boring stuff}
-    -> DONE
-* Mhmm
-    But I like it
- -> DONE
+== run_player_location
+	{ 
+		- player_location == HALLWAY: -> hallway 
+	}
+
+	<- characters_present(HALLWAY)
+	*	[Drawers]	-> examine_drawers
+	* 	[Wardrobe] -> examine_wardrobe
+	*  [Go to Office] 	-> go_office
+	-	-> run_player_location	
+= examine_drawers 
+	Something about drawers? -> END
+= examine_wardrobe 
+	Something about wardrobes? -> END
+= go_office 
+Something about offices? -> END
+// Here's the thread, which mixes in dialogue for characters you share the room with at the moment.
+
+== characters_present(room)
+	{ generals_location == room:
+		<- general_conversation
+	}
+	{ doctors_location == room:
+		<- doctor_conversation
+	}
+	-> DONE
+	
+== general_conversation 
+	*	[Ask the General about the bloodied knife]
+		"It's a bad business, I can tell you."
+	-	-> run_player_location
+
+== doctor_conversation 
+	*	[Ask the Doctor about the bloodied knife]
+		"There's nothing strange about blood, is there?"
+	-	-> run_player_location 
