@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/online-dating-game/static/css/main.3c1bc35a.chunk.css",
-    "main.js": "/online-dating-game/static/js/main.18bee941.chunk.js",
-    "main.js.map": "/online-dating-game/static/js/main.18bee941.chunk.js.map",
+    "main.js": "/online-dating-game/static/js/main.5ff1a46d.chunk.js",
+    "main.js.map": "/online-dating-game/static/js/main.5ff1a46d.chunk.js.map",
     "runtime-main.js": "/online-dating-game/static/js/runtime-main.c41b401c.js",
     "runtime-main.js.map": "/online-dating-game/static/js/runtime-main.c41b401c.js.map",
-    "static/js/2.2df21cdb.chunk.js": "/online-dating-game/static/js/2.2df21cdb.chunk.js",
-    "static/js/2.2df21cdb.chunk.js.map": "/online-dating-game/static/js/2.2df21cdb.chunk.js.map",
+    "static/js/2.ebcd53d3.chunk.js": "/online-dating-game/static/js/2.ebcd53d3.chunk.js",
+    "static/js/2.ebcd53d3.chunk.js.map": "/online-dating-game/static/js/2.ebcd53d3.chunk.js.map",
     "index.html": "/online-dating-game/index.html",
-    "precache-manifest.b53395ffb2fcd6c7c36915e7da86bab0.js": "/online-dating-game/precache-manifest.b53395ffb2fcd6c7c36915e7da86bab0.js",
+    "precache-manifest.8fe7aa3f3481395e2a02eda98bbccb6b.js": "/online-dating-game/precache-manifest.8fe7aa3f3481395e2a02eda98bbccb6b.js",
     "service-worker.js": "/online-dating-game/service-worker.js",
     "static/css/main.3c1bc35a.chunk.css.map": "/online-dating-game/static/css/main.3c1bc35a.chunk.css.map",
-    "static/js/2.2df21cdb.chunk.js.LICENSE.txt": "/online-dating-game/static/js/2.2df21cdb.chunk.js.LICENSE.txt",
+    "static/js/2.ebcd53d3.chunk.js.LICENSE.txt": "/online-dating-game/static/js/2.ebcd53d3.chunk.js.LICENSE.txt",
     "static/media/phone-wrapper.png": "/online-dating-game/static/media/phone-wrapper.6aa6c63b.png"
   },
   "entrypoints": [
     "static/js/runtime-main.c41b401c.js",
-    "static/js/2.2df21cdb.chunk.js",
+    "static/js/2.ebcd53d3.chunk.js",
     "static/css/main.3c1bc35a.chunk.css",
-    "static/js/main.18bee941.chunk.js"
+    "static/js/main.5ff1a46d.chunk.js"
   ]
 }
