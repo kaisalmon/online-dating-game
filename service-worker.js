@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/online-dating-game/precache-manifest.064fcccd95df5890d945a80af7b85f80.js"
+  "/online-dating-game/precache-manifest.0875eb5596eff54e374aa032f6a03503.js"
 );
 
 self.addEventListener('message', (event) => {

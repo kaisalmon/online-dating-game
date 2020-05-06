@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a319517253b6f81a14eecdd8f558b57c",
+    "revision": "6c690fa672abeed6998b0e79d3d5a76a",
     "url": "/online-dating-game/index.html"
   },
   {
-    "revision": "11ce4683df53f39b55cc",
+    "revision": "22252b328a6f337f90b1",
     "url": "/online-dating-game/static/css/main.233a9219.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/online-dating-game/static/js/2.d9fa44de.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "11ce4683df53f39b55cc",
-    "url": "/online-dating-game/static/js/main.2fea732f.chunk.js"
+    "revision": "22252b328a6f337f90b1",
+    "url": "/online-dating-game/static/js/main.7ce527d5.chunk.js"
   },
   {
     "revision": "ab97d0407cdd9a7c5057",
