@@ -4,7 +4,6 @@ import {Story} from 'inkjs/engine/Story';
 import {Choice} from 'inkjs/engine/Choice';
 
 
-
 export default class MatchThread{
     match: Match;
     messages: ChatMessage[];
@@ -20,6 +19,7 @@ export default class MatchThread{
     }
     tick(){
         if(this.conversationStory.canContinue){
+            if(Math.random()>0.4) return;
             const text = this.conversationStory.Continue();
             if(!text) return;
             this.messages.push({
@@ -27,18 +27,10 @@ export default class MatchThread{
                 fromPlayer: false,
                 text
             })
-        }else {
-            const [firstChoice] = this.getCurrentChoices();
-            if(firstChoice){
-                this.applyChoice(firstChoice);
-            }
         }
-
     }
     getCurrentChoices():Choice[]{
-        if(!this.canSpeak()){
-            return []
-        }
+        if(!this.canSpeak()) return []
         return this.conversationStory.currentChoices;
     }
     canSpeak():boolean{
@@ -48,6 +40,10 @@ export default class MatchThread{
         const index = typeof choice === "number"
             ? choice
             : this.getCurrentChoices().indexOf(choice)
+        if(index === -1) {
+        console.error(choice, index, this.conversationStory)
+            throw new Error("Invalid Index")
+        }
         this.conversationStory.ChooseChoiceIndex(index);
         const text = this.conversationStory.Continue();
         if(text) {

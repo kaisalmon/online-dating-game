@@ -5,12 +5,21 @@
 .item-enter-active {
   opacity: 1;
   transform: scale(1);
+  transform-origin: bottom;
   transition: opacity 200ms ease-in,  transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.item-exit {
+.item-leave {
   opacity: 1;
 }
-.item-exit-active {
+.item-leave-active {
   opacity: 0;
-  transition: opacity 500ms ease-in;
+  transition: opacity 300ms ease-in;
+}
+
+.playerChoice{
+  cursor: pointer;
+}
+.playerChoice:hover{
+  text-shadow:0px 0px 1px black;
+  text-decoration: underline;
 }

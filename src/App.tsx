@@ -4,7 +4,7 @@ import MatchThreadComp from "./components/match-thread";
 import MatchThread from "./game/match-thread";
 import GameState from "./game/game-state";
 
-const TICK_LENGTH= 1000;
+const TICK_LENGTH= 600;
 
 const Alex = {name: "Alex", traits:[] };
 
@@ -22,13 +22,20 @@ class App extends React.Component<{}, GameState>{
             this.setState({matchThread})
         }, TICK_LENGTH)
     }
+    onChange(){
+        const {matchThread} = this.state;
+        this.setState({matchThread})
+    }
     render()
     {
         const {matchThread} = this.state;
         return (
             <div className="App">
                 <PhoneWrapper>
-                    <MatchThreadComp matchThread={matchThread}/>
+                    <MatchThreadComp
+                        matchThread={matchThread}
+                        onChange={()=>this.onChange()}
+                    />
                 </PhoneWrapper>
             </div>
         );
