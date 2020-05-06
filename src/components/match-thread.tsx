@@ -1,5 +1,6 @@
 import React from 'react';
-import MatchThread from "../game/match-thread";
+import MatchThread  from "../game/match-thread";
+import {Choice} from 'inkjs/engine/Choice';
 import CSS from "csstype";
 import ChatMessage from "../game/chat-message";
 import Header from "./header";
@@ -51,11 +52,17 @@ function ChatMessageComp({chatMessage}:{chatMessage:ChatMessage}){
     const style = fromPlayer ?
         FROM_PLAYER_CHAT_BUBBLE_STYLE : FROM_MATCH_CHAT_BUBBLE_STYLE;
     return <div style={{position: "relative", textAlign:fromPlayer ? "right" : "left"}}>
-        <div style={style}>
+        <div style={style} className={fromPlayer ? "fromPlayer" : "fromMatch"}>
             <div style={!fromPlayer ? FROM_PLAYER_TAIL : FROM_MATCH_TAIL}/>
             {text}
         </div>
     </div>
+}
+
+function ChoiceComp({choice}:{choice:Choice}){
+    return <pre>
+        {choice.text}?
+    </pre>
 }
 
 export default function ({matchThread}:{matchThread:MatchThread}) {
@@ -68,6 +75,13 @@ export default function ({matchThread}:{matchThread:MatchThread}) {
               transitionEnterTimeout={2000}>
                  {messages.map(message =>
                        <ChatMessageComp chatMessage={message}/>
+                 )}
+            </ReactCSSTransitionGroup>
+            <ReactCSSTransitionGroup
+              transitionName="item"
+              transitionEnterTimeout={2000}>
+                 {matchThread.getCurrentChoices().map(choice =>
+                       <ChoiceComp choice={choice}/>
                  )}
             </ReactCSSTransitionGroup>
         </div>

@@ -1,32 +1,62 @@
 import Match from "./match";
 import ChatMessage from "./chat-message";
+import {Story} from 'inkjs/engine/Story';
+import {Choice} from 'inkjs/engine/Choice';
+
+
 
 export default class MatchThread{
     match: Match;
     messages: ChatMessage[];
+    conversationStory: Story;
+
+
     constructor(match:Match) {
         this.match = match;
         this.messages = [];
+        const json = require("../conversations/ink.json");
+        const story = new Story(json);
+        this.conversationStory = story;
     }
     tick(){
-        if(this.messages.length == 0){
+        if(this.conversationStory.canContinue){
+            const text = this.conversationStory.Continue();
+            if(!text) return;
             this.messages.push({
-                text: "Hi!",
-                id:1,
-                fromPlayer: false
-            });
-        }else if(this.messages.length == 1){
+                id:this.messages.length,
+                fromPlayer: false,
+                text
+            })
+        }else {
+            const [firstChoice] = this.getCurrentChoices();
+            if(firstChoice){
+                this.applyChoice(firstChoice);
+            }
+        }
+
+    }
+    getCurrentChoices():Choice[]{
+        if(!this.canSpeak()){
+            return []
+        }
+        return this.conversationStory.currentChoices;
+    }
+    canSpeak():boolean{
+        return !this.conversationStory.canContinue
+    }
+    applyChoice(choice: Choice|number){
+        const index = typeof choice === "number"
+            ? choice
+            : this.getCurrentChoices().indexOf(choice)
+        this.conversationStory.ChooseChoiceIndex(index);
+        const text = this.conversationStory.Continue();
+        if(text) {
             this.messages.push({
-                text: "Hey!",
-                id:1,
-                fromPlayer: true
-            });
-        }else if(this.messages.length == 2){
-            this.messages.push({
-                text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                id:3,
-                fromPlayer: false
-            });
+                id:this.messages.length,
+                fromPlayer: true,
+                text
+            })
         }
     }
+
 }

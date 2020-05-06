@@ -12,6 +12,7 @@
     "@types/react-addons-css-transition-group": "^15.0.5",
     "@types/react-dom": "^16.9.7",
     "@types/react-transition-group": "^4.2.4",
+    "inkjs": "^1.10.4",
     "react": "^16.13.1",
     "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.13.1",
