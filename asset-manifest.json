@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/online-dating-game/static/css/main.3c1bc35a.chunk.css",
-    "main.js": "/online-dating-game/static/js/main.5ff1a46d.chunk.js",
-    "main.js.map": "/online-dating-game/static/js/main.5ff1a46d.chunk.js.map",
+    "main.css": "/online-dating-game/static/css/main.233a9219.chunk.css",
+    "main.js": "/online-dating-game/static/js/main.2fea732f.chunk.js",
+    "main.js.map": "/online-dating-game/static/js/main.2fea732f.chunk.js.map",
     "runtime-main.js": "/online-dating-game/static/js/runtime-main.c41b401c.js",
     "runtime-main.js.map": "/online-dating-game/static/js/runtime-main.c41b401c.js.map",
-    "static/js/2.ebcd53d3.chunk.js": "/online-dating-game/static/js/2.ebcd53d3.chunk.js",
-    "static/js/2.ebcd53d3.chunk.js.map": "/online-dating-game/static/js/2.ebcd53d3.chunk.js.map",
+    "static/js/2.d9fa44de.chunk.js": "/online-dating-game/static/js/2.d9fa44de.chunk.js",
+    "static/js/2.d9fa44de.chunk.js.map": "/online-dating-game/static/js/2.d9fa44de.chunk.js.map",
     "index.html": "/online-dating-game/index.html",
-    "precache-manifest.8fe7aa3f3481395e2a02eda98bbccb6b.js": "/online-dating-game/precache-manifest.8fe7aa3f3481395e2a02eda98bbccb6b.js",
+    "precache-manifest.064fcccd95df5890d945a80af7b85f80.js": "/online-dating-game/precache-manifest.064fcccd95df5890d945a80af7b85f80.js",
     "service-worker.js": "/online-dating-game/service-worker.js",
-    "static/css/main.3c1bc35a.chunk.css.map": "/online-dating-game/static/css/main.3c1bc35a.chunk.css.map",
-    "static/js/2.ebcd53d3.chunk.js.LICENSE.txt": "/online-dating-game/static/js/2.ebcd53d3.chunk.js.LICENSE.txt",
+    "static/css/main.233a9219.chunk.css.map": "/online-dating-game/static/css/main.233a9219.chunk.css.map",
+    "static/js/2.d9fa44de.chunk.js.LICENSE.txt": "/online-dating-game/static/js/2.d9fa44de.chunk.js.LICENSE.txt",
     "static/media/phone-wrapper.png": "/online-dating-game/static/media/phone-wrapper.6aa6c63b.png"
   },
   "entrypoints": [
     "static/js/runtime-main.c41b401c.js",
-    "static/js/2.ebcd53d3.chunk.js",
-    "static/css/main.3c1bc35a.chunk.css",
-    "static/js/main.5ff1a46d.chunk.js"
+    "static/js/2.d9fa44de.chunk.js",
+    "static/css/main.233a9219.chunk.css",
+    "static/js/main.2fea732f.chunk.js"
   ]
 }
