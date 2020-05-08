@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6c690fa672abeed6998b0e79d3d5a76a",
+    "revision": "ddedf15771b86293f54c475395a1d4de",
     "url": "/online-dating-game/index.html"
   },
   {
-    "revision": "22252b328a6f337f90b1",
-    "url": "/online-dating-game/static/css/main.233a9219.chunk.css"
+    "revision": "3b01cbbb1a1dfb014817",
+    "url": "/online-dating-game/static/css/main.93ac17c1.chunk.css"
   },
   {
-    "revision": "b317d83b8f9011140421",
-    "url": "/online-dating-game/static/js/2.d9fa44de.chunk.js"
+    "revision": "3a1c2f8de20004f69c1a",
+    "url": "/online-dating-game/static/js/2.8cefcdeb.chunk.js"
   },
   {
     "revision": "e88a3e95b5364d46e95b35ae8c0dc27d",
-    "url": "/online-dating-game/static/js/2.d9fa44de.chunk.js.LICENSE.txt"
+    "url": "/online-dating-game/static/js/2.8cefcdeb.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "22252b328a6f337f90b1",
-    "url": "/online-dating-game/static/js/main.7ce527d5.chunk.js"
+    "revision": "3b01cbbb1a1dfb014817",
+    "url": "/online-dating-game/static/js/main.c7c4d948.chunk.js"
   },
   {
     "revision": "ab97d0407cdd9a7c5057",
