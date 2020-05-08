@@ -5,7 +5,7 @@ import CSS from "csstype";
 import ChatMessage from "../game/chat-message";
 import Header from "./header";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import "../styles/transitions.css"
+import "../styles/style.css"
 
 const matchColor = "#2095FE";
 const fromPlayerColor = "lightgray";
@@ -57,14 +57,23 @@ const FROM_PLAYER_TAIL : CSS.Properties = {
     left: "calc(0.3vh - 2em)",
     transform:" rotateY(180deg)"
 }
+
+function TypingDots(){
+    return <div className="loadingContainer">
+        <div className="ball1"></div>
+        <div className="ball2"></div>
+        <div className="ball3"></div>
+    </div>
+}
+
 function ChatMessageComp({chatMessage}:{chatMessage:ChatMessage}){
-    const {text, fromPlayer} = chatMessage;
+    const {fromPlayer} = chatMessage;
     const style = fromPlayer ?
         FROM_PLAYER_CHAT_BUBBLE_STYLE : FROM_MATCH_CHAT_BUBBLE_STYLE;
-    return <div style={{position: "relative", textAlign:fromPlayer ? "right" : "left"}}  key={chatMessage.text}>
+    return <div style={{position: "relative", textAlign:fromPlayer ? "right" : "left"}}  key={chatMessage.id}>
         <div style={style} className={fromPlayer ? "fromPlayer" : "fromMatch"}>
             <div style={!fromPlayer ? FROM_PLAYER_TAIL : FROM_MATCH_TAIL}/>
-            {text}
+            {chatMessage.isBeingTyped ? <TypingDots/> : chatMessage.text}
         </div>
     </div>
 }
@@ -76,23 +85,25 @@ function ChoiceComp({choice, onChoiceSelected}:{choice:Choice, onChoiceSelected:
 }
 
 export default function ({matchThread,onChange}:{matchThread:MatchThread, onChange:()=>void}) {
-    const {match, messages} = matchThread;
+    const {match} = matchThread;
     const choices = matchThread.getCurrentChoices();
+    const messages = matchThread.getMessages();
     console.log(choices.length)
     return <div style={MESSAGE_THREAD_STYLES}>
         <Header>{match.name}</Header>
         <div style={MESSAGE_AREA_STYLE}>
             <ReactCSSTransitionGroup
               transitionName="item"
-              transitionEnterTimeout={2000}>
+              transitionEnterTimeout={600}
+              transitionLeaveTimeout={300}>
                  {messages.map(message =>
-                       <ChatMessageComp chatMessage={message}/>
+                       <ChatMessageComp key={message.id} chatMessage={message}/>
                  )}
             </ReactCSSTransitionGroup>
             <ReactCSSTransitionGroup
               transitionName="item"
-              transitionLeaveTimeout={300}
-              transitionEnterTimeout={400}>
+              transitionEnterTimeout={600}
+              transitionLeaveTimeout={300}>
                  {choices.map(choice =>
                     <ChoiceComp
                         choice={choice}
