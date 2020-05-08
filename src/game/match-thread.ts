@@ -12,6 +12,7 @@ export default class MatchThread{
     timeBetweenMatchMessages: number = 1750;
     timeToTypeMessage:number = 1500;
     timeToReply: number = 7000;
+    timeToStartConvo: number = 2000;
 
     timeSinceLastMatchMessage:number = 0;
     timeSinceMessageStartedBeingTyped:number = 0;
@@ -35,19 +36,23 @@ export default class MatchThread{
             if(text === null) throw new Error("Null message")
             this.sendMatchMessage({text: text});
         }else{
-            const timeToStartTyping = (this.didMatchSendLastMessage() ?
-                this.timeBetweenMatchMessages
-                : this.timeToReply
-            ) - this.timeToTypeMessage;
-            const timeSinceLastMessage =  this.timeSinceLastMessage();
-            console.log({timeSinceLastMessage})
+            const timeToStartTyping = this.getTimeToStartTyping() - this.timeToTypeMessage;
+            const timeSinceLastMessage =  this.getTimeSinceLastMessage();
             if(timeSinceLastMessage < timeToStartTyping ) return;
             this.timeSinceMessageStartedBeingTyped = 0;
             this.matchIsTyping = true;
         }
     }
 
-    timeSinceLastMessage(){
+    getTimeToStartTyping(){
+        if(this.sentMessages.length === 0) return this.timeToStartConvo;
+        return (this.didMatchSendLastMessage() ?
+                this.timeBetweenMatchMessages
+                : this.timeToReply
+            )
+    }
+
+    getTimeSinceLastMessage(){
         return this.didMatchSendLastMessage() ? this.timeSinceLastMatchMessage : this.timeSinceLastPlayerMessage;
     }
 
@@ -57,6 +62,7 @@ export default class MatchThread{
         this.sentMessages.push({
             id:this.sentMessages.length,
             fromPlayer: false,
+            isStageDirection: !!this.conversationStory.currentTags?.find(tag=>tag==="stage_direction"),
             text,
         })
     }

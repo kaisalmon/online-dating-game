@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import MatchThread  from "../game/match-thread";
 import {Choice} from 'inkjs/engine/Choice';
 import CSS from "csstype";
@@ -66,8 +66,21 @@ function TypingDots(){
     </div>
 }
 
+function StageDirection({children}:{children:ReactNode}){
+    return <div style={{
+        background: "linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(0,0,0,0.2) 15%,rgba(0,0,0,0.2) 85%,rgba(0,0,0,0) 100%)",
+        textAlign: "center",
+        color: "#333",
+        padding: "0.5em",
+        fontStyle: "italic",
+     }}>{children}</div>
+}
+
 function ChatMessageComp({chatMessage}:{chatMessage:ChatMessage}){
     const {fromPlayer} = chatMessage;
+    if(chatMessage.isStageDirection){
+        return <StageDirection>{chatMessage.text}</StageDirection>
+    }
     const style = fromPlayer ?
         FROM_PLAYER_CHAT_BUBBLE_STYLE : FROM_MATCH_CHAT_BUBBLE_STYLE;
     return <div style={{position: "relative", textAlign:fromPlayer ? "right" : "left"}}  key={chatMessage.id}>
@@ -84,36 +97,62 @@ function ChoiceComp({choice, onChoiceSelected}:{choice:Choice, onChoiceSelected:
     </pre>
 }
 
-export default function ({matchThread,onChange}:{matchThread:MatchThread, onChange:()=>void}) {
-    const {match} = matchThread;
-    const choices = matchThread.getCurrentChoices();
-    const messages = matchThread.getMessages();
-    console.log(choices.length)
-    return <div style={MESSAGE_THREAD_STYLES}>
-        <Header>{match.name}</Header>
-        <div style={MESSAGE_AREA_STYLE}>
-            <ReactCSSTransitionGroup
-              transitionName="item"
-              transitionEnterTimeout={600}
-              transitionLeaveTimeout={300}>
-                 {messages.map(message =>
-                       <ChatMessageComp key={message.id} chatMessage={message}/>
-                 )}
-            </ReactCSSTransitionGroup>
-            <ReactCSSTransitionGroup
-              transitionName="item"
-              transitionEnterTimeout={600}
-              transitionLeaveTimeout={300}>
-                 {choices.map(choice =>
-                    <ChoiceComp
-                        choice={choice}
-                        onChoiceSelected={(reply)=>{
-                            matchThread.applyChoice(reply);
-                            onChange();
-                        }}
-                    />
-                 )}
-            </ReactCSSTransitionGroup>
+type MessageThreadProps = { matchThread: MatchThread, onChange: () => void }
+
+export default class MessageThread extends React.Component<MessageThreadProps> {
+    el: HTMLDivElement| null = null;
+    lastHeight: number =  0;
+  componentDidMount() {
+    this.scrollToBottom();
+  }
+
+  componentDidUpdate() {
+    this.scrollToBottom();
+  }
+   scrollToBottom() {
+        if(!this.el) return;
+        const height = this.el.scrollHeight;
+        if(this.lastHeight === height) return;
+        this.lastHeight = height;
+       console.log({el:this.el})
+       this.el.scrollTo({
+           behavior:"smooth",
+           top: height,
+       })
+    }
+
+    render() {
+        const {matchThread, onChange} = this.props;
+        const {match} = matchThread;
+        const choices = matchThread.getCurrentChoices();
+        const messages = matchThread.getMessages();
+        console.log(choices.length)
+        return <div style={MESSAGE_THREAD_STYLES}>
+            <Header>{match.name}</Header>
+            <div style={MESSAGE_AREA_STYLE} ref={el => { this.el = el; }}>
+                <ReactCSSTransitionGroup
+                    transitionName="item"
+                    transitionEnterTimeout={600}
+                    transitionLeaveTimeout={300}>
+                    {messages.map(message =>
+                        <ChatMessageComp key={message.id} chatMessage={message}/>
+                    )}
+                </ReactCSSTransitionGroup>
+                <ReactCSSTransitionGroup
+                    transitionName="item"
+                    transitionEnterTimeout={600}
+                    transitionLeaveTimeout={300}>
+                    {choices.map(choice =>
+                        <ChoiceComp
+                            choice={choice}
+                            onChoiceSelected={(reply) => {
+                                matchThread.applyChoice(reply);
+                                onChange();
+                            }}
+                        />
+                    )}
+                </ReactCSSTransitionGroup>
+            </div>
         </div>
-    </div>
+    }
 }

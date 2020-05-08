@@ -20,6 +20,7 @@ const PHONE_SCREEN:CSS.Properties = {
     flexBasis: "auto",
     overflow: "auto",
     margin: "10vh 7vh",
+    borderRadius: "2vh"
 }
 
 export default function PhoneWrapper({children}:{children:ReactNode}) {
