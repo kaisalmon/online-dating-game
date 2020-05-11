@@ -1,44 +1,74 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Writing Scripts in Inkly
+Each line is it's own message. Messages which begin with one or more ` * ` are messages by the player. This means they will appear as options for the player to click, and when they do they will send that message. All other lines are messages sent by the partner.
 
-## Available Scripts
+For example:
+```
+What's your favourite flower?
+* Roses
+* Lillies
+* I'm not a fan of flowers really
+```
+Would mean that the match starts the conversation by asking "What's your favourite flower?" and then the player would have one of three options to choose. 
 
-In the project directory, you can run:
+Putting text after the message will give the reply for each message, for example
+For example:
+```
+What's your favourite flower?
+* Roses
+    I love Roses
+* Lillies
+    I'm not a big fan of Lillies, actually
+* I'm not a fan of flowers really
+    Oh, that's boring!
+```
+Now each possible message for the player has a reply.
+You can think of this as tree that's splitting into 3 different branches. To split more branches we use more ` * `s the deeper we go:
+```
+What's your favourite flower?
+* Roses
+    I love Roses
+* Lillies
+    I'm not a big fan of Lillies, actually
+* I'm not a fan of flowers really
+    Oh, that's boring!
+    ** I've just never liked flowers
+    ** Hey I can like and dislike whatever I want
+    ** ...sorry
+```
+Remember, everything with an `*` is a player reply. Now we can add the things the match says in response:
+```
+What's your favourite flower?
+* Roses
+    I love Roses
+* Lillies
+    I'm not a big fan of Lillies, actually
+* I'm not a fan of flowers really
+    Oh, that's boring!
+    ** I've just never liked flowers
+        I suppose I can understand that 
+    ** Hey I can like and dislike whatever I want
+        Waoh, sorry!
+    ** ...sorry
+        Don't be sorry!
+```
 
-### `yarn start`
+So we've now got the situation where the branch splits into three, and then one of those branches splits into another three! 
+If we want to reconnect the branches back again, we use `-` like so:
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+What's your favourite flower?
+* Roses
+    I love Roses
+* Lillies
+    I'm not a big fan of Lillies, actually
+* I'm not a fan of flowers really
+    Oh, that's boring!
+    ** I've just never liked flowers
+        I suppose I can understand that 
+    ** Hey I can like and dislike whatever I want
+        Waoh, sorry!
+    ** ...sorry
+        Don't be sorry!
+ - But my favourite flower is Daffodils 
+```
+If you think of each choice the player makes as getting one level deeper, that ` - ` brings you back up to "level one".
